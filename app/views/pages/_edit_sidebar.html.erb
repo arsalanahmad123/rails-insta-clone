@@ -1,0 +1,29 @@
+<div class="flex flex-col m-0 p-0">
+  <%= link_to "Edit Profile",editsection_path,data: {
+    turbo_frame: "edit-contentarea",
+    turbo_action: "advance",
+    target: "#edit-contentarea"
+  }, class: "py-4 border-l-2 border-slate-800 -ml-1 -mt-1 px-3 text-sm font-bold " %>
+  <%= link_to "Professional Account",professional_account_path,data: {
+    turbo_frame: "edit-contentarea",
+    turbo_action: "advance",
+    target: "edit-contentarea",
+    turbo_history: "true"
+  }, class: "py-4 hover:border-l-2 hover:border-slate-300 -ml-1 -mt-1 px-3 text-sm " %>
+  <%= link_to "Change Password",change_password_path,data: {
+    turbo_frame: "edit-contentarea",
+    turbo_action: "advance",
+    target: "edit-contentarea",
+    turbo_history: "true"
+  }, class: "py-4 hover:border-l-2 hover:border-slate-300 -ml-1 px-3 hover:bg-slate-50 cursor-pointer text-sm " %>
+  <span class="py-4 hover:border-l-2 hover:border-slate-300 -ml-1 px-3 hover:bg-slate-50 cursor-pointer text-sm">Apps and Websites</span>
+  <span class="py-4 hover:border-l-2 hover:border-slate-300 -ml-1 px-3 hover:bg-slate-50 cursor-pointer text-sm">Email Notifications</span>
+  <span class="py-4 hover:border-l-2 hover:border-slate-300 -ml-1 px-3 hover:bg-slate-50 cursor-pointer text-sm">Push Notifications</span>
+  <span class="py-4 hover:border-l-2 hover:border-slate-300 -ml-1 px-3 hover:bg-slate-50 cursor-pointer text-sm">Manage Contacts</span>
+  <span class="py-4 hover:border-l-2 hover:border-slate-300 -ml-1 px-3 hover:bg-slate-50 cursor-pointer text-sm">Privacy and Security</span>
+  <span class="py-4 hover:border-l-2 hover:border-slate-300 -ml-1 px-3 hover:bg-slate-50 cursor-pointer text-sm">Ads</span>
+  <span class="py-4 hover:border-l-2 hover:border-slate-300 -ml-1 px-3 hover:bg-slate-50 cursor-pointer text-sm">Supervision</span>
+  <span class="py-4 hover:border-l-2 hover:border-slate-300 -ml-1 px-3 hover:bg-slate-50 cursor-pointer text-sm">Login Activity</span>
+  <span class="py-4 hover:border-l-2 hover:border-slate-300 -ml-1 px-3 hover:bg-slate-50 cursor-pointer text-sm">Emails from Instagram</span>
+  <span class="py-4 hover:border-l-2 hover:border-slate-300 -ml-1 px-3 hover:bg-slate-50 cursor-pointer text-sm">Help</span>
+</div>

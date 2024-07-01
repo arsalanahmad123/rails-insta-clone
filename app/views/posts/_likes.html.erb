@@ -1,0 +1,10 @@
+<%= turbo_frame_tag "likes",class: "flex flex-col items-center mt-5" do %>
+  <%= link_to create_like_path(reel.id),data:{turbo_method: :post},class: "flex flex-col items-center" do %>
+    <% if liked_status %>
+      <i class="material-icons cursor-pointer text-red-600">favorite</i>
+    <% else %>
+      <i class="material-icons cursor-pointer">favorite_border</i>
+    <% end %>
+    <span class="font-bold"><%= reel.likes.count %></span>
+  <% end %>
+<% end %>

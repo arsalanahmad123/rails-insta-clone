@@ -1,0 +1,27 @@
+<div class="container mx-auto  mt-3 bg-white dark:bg-slate-800">
+  <div class="flex flex-col bg-white justify-center items-center max-w-[350px] mx-auto border border-gray-300 dark:bg-slate-800 dark:border-slate-700">
+    <div class="mt-10">
+      <i data-visualcompletion="css-img" aria-label="Instagram" class="bg-white" role="img" style="background-image: url(&quot;https://static.cdninstagram.com/rsrc.php/v3/yS/r/ajlEU-wEDyo.png&quot;); background-position: 0px -52px; background-size: auto; width: 175px; height: 51px; background-repeat: no-repeat; display: inline-block;"></i>
+    </div>
+    <%= render 'form' %>
+    <div class="flex justify-center items-center mt-3">
+      <div class="border-t border-gray-300 w-[100px] dark:border-slate-700"></div>
+      <span class="text-gray-500 text-center max-w-[220px] font-extrabold mx-2 dark:text-white">
+        OR
+      </span>
+      <div class="border-t border-gray-300 w-[100px] dark:border-slate-700"></div>
+    </div>
+    <%# <%= render 'form' %>
+    <div class="text-blue-800 font-bold text-[15px] min-w-[250px] rounded-md flex justify-center items-center py-1 mt-3 cursor-pointer dark:text-blue-800">
+      <span class="material-icons mr-1 dark:text-white">
+        facebook
+      </span>
+      Log in with Facebook
+    </div>
+  </div>
+  <div class="flex flex-col bg-white justify-center items-center max-w-[350px] mx-auto border border-gray-300 mt-3 p-5 dark:bg-slate-800 dark:border-slate-700">
+    <span class="text-gray-800 text-center max-w-[220px] text-[14px] dark:text-white">
+      Don't have an account? <a href="/users/sign_up" class="text-blue-500 font-bold">Sign up</a>
+    </span>
+  </div>
+</div>

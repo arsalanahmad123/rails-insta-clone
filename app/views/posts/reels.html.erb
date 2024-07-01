@@ -1,0 +1,105 @@
+<% ActiveStorage::Current.url_options = { host: request.base_url } %>
+<% if @reels.empty? %>
+  <div class="flex justify-center items-center h-screen flex-col ">
+    <span class="material-icons animate-bounce" style="font-size: 80px; font-weight: 400px;">sentiment_very_dissatisfied</span>
+    <h1 class="text-6xl font-bold animate-jump-in">No reels found</h1>
+  </div>
+<% end %>
+<% @reels.each do |reel| %>
+  <div class="flex items-center justify-center h-screen" >
+    <div class="w-96 h-0 relative aspect-w-15 aspect-h-7 rounded overflow-hidden" data-trial-id="<%= reel.id %>">
+      <!-- Replace the video URL below with your desired video URL -->
+      <video class="absolute w-full h-full object-cover rounded cursor-pointer" muted autoplay loop src="<%= reel.video.url %>">
+      </video>
+      <div class="top-2 left-[85%] p-2 absolute w-20 h-20" data-action="toggleVolume">
+        <i class="material-icons text-black cursor-pointer p-1 bg-slate-300 bg-opacity-60 rounded-full animate-jump-in">volume_off</i>
+      </div>
+      <div class="absolute inset-0 top-[45%] left-40 hidden animate-jump" data-action="toggleVideo">
+        <i class="material-icons text-black bg-gray-500 bg-opacity-90 p-5 rounded-full text-5xl cursor-pointer">play_arrow</i>
+      </div>
+      <div class="absolute top-[90%] left-0 bg-gray-300 bg-opacity-70 text-white p-2 items-center justify-center">
+        <div class="flex flex-col gap-y-2">
+          <div class="flex flex-row gap-x-5">
+            <p class="text-sm cursor-pointer hover:underline"><%= (reel.user.username).upcase %></p>
+            <span class="text-sm cursor-pointer hover:underline">Follow</span>
+          </div>
+          <p class="text-sm"><%= (reel.caption).truncate(20) %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% if @pagy.pages > 1 %>
+    <div class="bg-gray-100 p-5 rounded fixed top-[50%] right-[70px] font-bold flex justify-between">
+      <%== pagy_nav(@pagy).html_safe if @pagy.pages > 1 %>
+    </div>
+  <% end %>
+  <%= link_to "Back to Homepage", root_path, class: "bg-gray-100 px-4 py-2 rounded fixed top-[50%] left-[70px] font-bold flex justify-between hover:bg-gray-200 shadow-lg shadow-gray-300" %>
+  <div class="flex flex-row gap-x-20 justify-center mt-5 items-center bg-gray-100 w-96 mx-auto mb-10 py-10 rounded relative">
+    <%= turbo_frame_tag "likes" do %>
+      <%= link_to create_like_path(reel.id),data:{turbo_method: :post},class: "flex flex-col items-center" do %>
+        <%= render "posts/likes",reel: reel,liked_status: current_user.liked?(reel) %>
+      <% end %>
+    <% end %>
+    <%= link_to new_comment_path(reel),data:{turbo_frame: "new-comment",target: "new-comment" } do  %>
+      <i class="material-icons cursor-pointer">comment</i>
+    <% end %>
+    <i class="material-icons cursor-pointer" data-controller="share" data-share-url-value="<%= request.base_url + '/instagram/reels?page=' + @pagy.page.to_s %>">send</i>
+    <div  class="absolute bg-slate-300 text-indigo-600 top-24 left-28 p-5 rounded hidden" id="shareData">
+      <div class="flex flex-col justify-center gap-y-10">
+        <h4 class="font-bold text-lg text-center animate-infinite animate-bounce">
+          <i class="material-icons">share</i>
+          Share</h4>
+        <div class="flex justify-center items-center gap-x-5">
+          <div class="bg-slate-300 rounded-full p-3 hover:bg-gray-400 cursor-pointer">
+            <a href="https://www.facebook.com" target="_blank">
+              <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 8 19">
+                <path fill-rule="evenodd" d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z" clip-rule="evenodd"/>
+              </svg>
+            </a>
+          </div>
+          <div class="bg-slate-300 rounded-full p-3 hover:bg-gray-400 cursor-pointer">
+            <a href="https://www.linkedin.com" target="_blank">
+              <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 15 15">
+                <path fill-rule="evenodd" d="M7.979 5v1.586a3.5 3.5 0 0 1 3.082-1.574C14.3 5.012 15 7.03 15 9.655V15h-3v-4.738c0-1.13-.229-2.584-1.995-2.584-1.713 0-2.005 1.23-2.005 2.5V15H5.009V5h2.97ZM3 2.487a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" clip-rule="evenodd"/>
+                <path d="M3 5.012H0V15h3V5.012Z"/>
+              </svg>
+            </a>
+          </div>
+          <div class="bg-slate-300 rounded-full p-3 hover:bg-gray-400 cursor-pointer">
+            <a href="https://discord.com" target="_blank"
+>
+              <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 21 16">
+                <path d="M16.942 1.556a16.3 16.3 0 0 0-4.126-1.3 12.04 12.04 0 0 0-.529 1.1 15.175 15.175 0 0 0-4.573 0 11.585 11.585 0 0 0-.535-1.1 16.274 16.274 0 0 0-4.129 1.3A17.392 17.392 0 0 0 .182 13.218a15.785 15.785 0 0 0 4.963 2.521c.41-.564.773-1.16 1.084-1.785a10.63 10.63 0 0 1-1.706-.83c.143-.106.283-.217.418-.33a11.664 11.664 0 0 0 10.118 0c.137.113.277.224.418.33-.544.328-1.116.606-1.71.832a12.52 12.52 0 0 0 1.084 1.785 16.46 16.46 0 0 0 5.064-2.595 17.286 17.286 0 0 0-2.973-11.59ZM6.678 10.813a1.941 1.941 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.919 1.919 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Zm6.644 0a1.94 1.94 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.918 1.918 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Z"/>
+              </svg>
+            </a>
+          </div>
+          <div class="bg-slate-300 rounded-full p-3 hover:bg-gray-400 cursor-pointer">
+            <a href="https://twitter.com" target="_blank"
+>
+              <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 17">
+                <path fill-rule="evenodd" d="M20 1.892a8.178 8.178 0 0 1-2.355.635 4.074 4.074 0 0 0 1.8-2.235 8.344 8.344 0 0 1-2.605.98A4.13 4.13 0 0 0 13.85 0a4.068 4.068 0 0 0-4.1 4.038 4 4 0 0 0 .105.919A11.705 11.705 0 0 1 1.4.734a4.006 4.006 0 0 0 1.268 5.392 4.165 4.165 0 0 1-1.859-.5v.05A4.057 4.057 0 0 0 4.1 9.635a4.19 4.19 0 0 1-1.856.07 4.108 4.108 0 0 0 3.831 2.807A8.36 8.36 0 0 1 0 14.184 11.732 11.732 0 0 0 6.291 16 11.502 11.502 0 0 0 17.964 4.5c0-.177 0-.35-.012-.523A8.143 8.143 0 0 0 20 1.892Z" clip-rule="evenodd"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <i class="material-icons cursor-pointer">bookmark</i>
+  </div>
+  <div class="flex flex-col  bg-gray-100 w-96 mx-auto py-10 mb-20">
+    <%= turbo_frame_tag "new-comment" %>
+    <div class="flex flex-row justify-between items-center border-t border-slate-300" data-controller="comments">
+      <span>Comments</span>
+      <span class="cursor-pointer text-indigo-500" data-comments-target="commentDrawIcon"></span>
+    </div>
+    <div class="comments-section hidden ">
+      <%= turbo_frame_tag "comments",class: "flex flex-col gap-y-5 px-3 bg-gray-100 w-96 mx-auto py-10 animate-jump" do %>
+        <% if @comments.empty? %>
+          <p class="text-gray-400">No comments yet</p>
+        <% else %>
+          <%= render 'comments/comments',comments: @comments %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

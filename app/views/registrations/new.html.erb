@@ -1,0 +1,29 @@
+<div class="container mx-auto  mt-3">
+  <div class="flex flex-col bg-white justify-center items-center max-w-[350px] mx-auto border border-gray-300">
+    <div class="mt-10">
+      <i data-visualcompletion="css-img" aria-label="Instagram" class="" role="img" style="background-image: url(&quot;https://static.cdninstagram.com/rsrc.php/v3/yS/r/ajlEU-wEDyo.png&quot;); background-position: 0px -52px; background-size: auto; width: 175px; height: 51px; background-repeat: no-repeat; display: inline-block;"></i>
+    </div>
+    <span class="text-gray-500 text-center max-w-[220px] mt-3 font-extrabold">
+      Sign up to see photos and videos from your friends.
+    </span>
+    <div class="bg-[rgb(0,149,246)] text-white font-bold text-[15px] min-w-[250px] rounded-md flex justify-center items-center py-1 mt-3 cursor-pointer">
+      <span class="material-icons mr-1">
+        facebook
+      </span>
+      Log in with Facebook
+    </div>
+    <div class="flex justify-center items-center mt-3">
+      <div class="border-t border-gray-300 w-[100px]"></div>
+      <span class="text-gray-500 text-center max-w-[220px] font-extrabold mx-2">
+        OR
+      </span>
+      <div class="border-t border-gray-300 w-[100px]"></div>
+    </div>
+    <%= render 'form',user: @user %>
+  </div>
+  <div class="flex flex-col bg-white justify-center items-center max-w-[350px] mx-auto border border-gray-300 mt-3 p-5">
+    <span class="text-gray-800 text-center max-w-[220px] text-[14px]">
+      Have an account? <a href="/users/sign_in" class="text-blue-500">Log in</a>
+    </span>
+  </div>
+</div>

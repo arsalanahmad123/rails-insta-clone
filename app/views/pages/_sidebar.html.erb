@@ -1,0 +1,89 @@
+<div class="md:w-[240px] shadow md:h-screen md:fixed md:top-0 md:left-0 md:z-10 fixed bottom-0 left-0 w-full bg-white h-14 border-t border-gray-300 md:border-r-[1px] md:border-r-gray-200">
+  <div class="p-4">
+    <div class="hidden md:block pt-4">
+      <%= link_to root_path do %>
+        <i data-visualcompletion="css-img" aria-label="Instagram" class="" role="img" style="background-image: url(&quot;https://static.cdninstagram.com/rsrc.php/v3/yS/r/ajlEU-wEDyo.png&quot;); background-position: 0px -52px; background-size: auto; width: 175px; height: 51px; background-repeat: no-repeat; display: inline-block;"></i>
+      <% end %>
+    </div>
+    <%# desktop menu  %>
+    <ul class="md:flex-col md:gap-y-3 hidden md:flex md:mt-10 [&>*:last-child]:mt-10">
+      <%= link_to insta_path,remote: true,data: {turbo_frame: "main-body",turbo_stream: "replace", turbo_action: "advance", target: "main-body"} do %>
+        <li class="flex items-center gap-2 py-3 pl-3 font-light hover:bg-gray-100 cursor-pointer transition-all duration-200 rounded-md group">
+          <span class="material-icons font-extrabold cursor-pointer hover:scale-105 group-hover:scale-105">home</span>
+          <span>Home</span>
+        </li>
+      <% end %>
+      <%= link_to explore_path,remote: true,data: {turbo_frame: "main-body",turbo_stream: "replace", turbo_action: "advance", target: "#main-body"} do %>
+        <li class="flex items-center gap-2 py-3 pl-3 font-light hover:bg-gray-100 cursor-pointer transition-all duration-200 rounded-md group">
+          <span class="material-icons font-extrabold cursor-pointer hover:scale-105 group-hover:scale-105">explore</span>
+          <span>Explore</span>
+        </li>
+      <% end %>
+      <%= link_to reels_path do %>
+        <li class="flex items-center gap-2 py-3 pl-3 font-light hover:bg-gray-100 cursor-pointer transition-all duration-200 rounded-md group">
+          <span class="material-icons font-extrabold cursor-pointer hover:scale-105 group-hover:scale-105">movie</span>
+          <span>Reels</span>
+        </li>
+      <% end %>
+      <%= link_to new_post_path,remote: :true,data: { turbo_frame: "main-body", turbo_action: "advance", target: "main-body", turbo_history: true} do %>
+        <li class="flex items-center gap-2 py-3 pl-3 font-light hover:bg-gray-100 cursor-pointer transition-all duration-200 rounded-md group">
+          <span class="material-icons font-extrabold cursor-pointer hover:scale-105 group-hover:scale-105">add_box</span>
+          <span>Create</span>
+        </li>
+      <% end %>
+      <li class="flex items-center gap-2 py-3 pl-3 font-light hover:bg-gray-100 cursor-pointer transition-all duration-200 rounded-md group">
+        <span class="material-icons font-extrabold -rotate-45 cursor-pointer hover:scale-105 group-hover:scale-105">send</span>
+        <span>Messages</span>
+      </li>
+      <li class="flex items-center gap-2 py-3 pl-3 font-light hover:bg-gray-100 cursor-pointer transition-all duration-200 rounded-md group">
+        <span class="material-icons font-extrabold cursor-pointer hover:scale-105 group-hover:scale-105">notifications</span>
+        <span>Notifications</span>
+      </li>
+      <%= link_to profile_path(current_user),remote: true,data: { turbo_frame: "main-body", turbo_stream: "replace", action: "replace", target: :_top } do %>
+        <li class="flex items-center gap-2 py-3 pl-3 font-light hover:bg-gray-100 cursor-pointer transition-all duration-200 rounded-md group">
+          <span class="material-icons font-extrabold cursor-pointer hover:scale-105 group-hover:scale-105">mood</span>
+          <span>Profile</span>
+        </li>
+      <% end %>
+      <li class="flex items-center gap-2 py-3 pl-3 font-light hover:bg-gray-100 cursor-pointer transition-all duration-200 rounded-md group dropdown dropdown-top focus:font-extrabold" tabindex="0">
+        <span class="material-icons font-extrabold cursor-pointer hover:scale-105 group-hover:scale-105">menu</span>
+        <span>More</span>
+        <ul tabindex="0" class="dropdown-content z-50 menu shadow-xl bg-base-100 rounded-box w-60">
+          <li class="font-normal"><a class="py-4 flex items-center"><span class="material-icons">settings</span>Settings</a></li>
+          <li class="font-normal"><a class="py-4 flex items-center"><i class="material-icons">whatshot</i>
+              Your Activity</a></li>
+          <li class="font-normal"><a class="py-4 flex items-center"><i class="material-icons">bookmark</i>Saved</a></li>
+          <li class="font-normal"><a class="py-4 flex items-center"><i class="material-icons">light_mode</i>Switch Appearance</a></li>
+          <li class="font-normal"><a class="py-4 flex items-center"><i class="material-icons">report</i>Report a Problem</a></li>
+          <div class="border-t-4 border-gray-200 w-full mt-2">
+            <li class="font-normal mt-2"><a class="py-4">Switch Accounts</a></li>
+            <li class="font-normal">
+              <%= link_to "Log out", destroy_session_path,data: { turbo_method: :delete },class: "py-4" %></li>
+          </div>
+        </ul>
+      </li>
+    </ul>
+    <%# mobile menu  %>
+    <ul class="flex justify-between items-center md:hidden">
+      <li>
+        <span class="material-icons font-extrabold cursor-pointer hover:scale-105 text-black">home</span>
+      </li>
+      <li>
+        <span class="material-icons font-extrabold cursor-pointer hover:scale-105 text-black">explore</span>
+      </li>
+      <li>
+        <span class="material-icons font-extrabold cursor-pointer hover:scale-105">movie</span>
+      </li>
+      <li>
+        <span class="material-icons font-extrabold cursor-pointer hover:scale-105 text-black">add_box</span>
+      </li>
+      <li>
+        <span class="material-icons font-extrabold -rotate-45 cursor-pointer hover:scale-105 text-black">send</span>
+      </li>
+      <li>
+        <span class="material-icons font-extrabold cursor-pointer hover:scale-105 text-black">mood</span>
+      </li>
+      <!-- Add more sidebar links here -->
+    </ul>
+  </div>
+</div>

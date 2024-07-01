@@ -1,0 +1,69 @@
+<div class="flex items-center justify-center h-screen">
+  <div class="w-96 h-0 relative aspect-w-15 aspect-h-7 rounded overflow-hidden" id="video-toggle">
+    <!-- Replace the video URL below with your desired video URL -->
+    <video class="absolute w-full h-full object-cover rounded" loop id="video" src="https://www.w3schools.com/html/mov_bbb.mp4">
+    </video>
+    <div class="top-0 left-0 p-2 fixed" id="volumebtn">
+      <i class="material-icons text-black cursor-pointer p-1 bg-slate-300 bg-opacity-60 rounded-full animate-jump-in" >volume_off</i>
+    </div>
+    <div class="absolute inset-0 items-center justify-center hidden animate-jump" id="playbtn">
+      <i class="material-icons text-black bg-gray-500 bg-opacity-90 p-5 rounded-full text-5xl cursor-pointer" >play_arrow</i>
+    </div>
+    <div class="absolute bottom-0 left-0 w-full bg-black bg-opacity-50 text-white p-2 flex justify-between items-end">
+      <p class="text-sm">Your captions or additional text here.</p>
+    </div>
+  </div>
+</div>
+<script>
+  const video = document.getElementById("video");
+  const playBtn = document.getElementById("playbtn");
+  const volumeBtn = document.getElementById("volumebtn");
+
+  // Add click event listeners to video label and play button
+  document.getElementById("video-toggle").addEventListener("click", () => {
+    toggleVideo();
+  });
+
+  playBtn.addEventListener("click", () => {
+    toggleVideo();
+  });
+
+  // Add click event listener to volume button
+  volumeBtn.addEventListener("click", (event) => {
+    event.stopPropagation(); // Stop the click event from propagating to the parent element
+    toggleVolume();
+  });
+
+  // Function to play or pause the video
+  function toggleVideo() {
+    if (video.paused) {
+      playVideo();
+    } else {
+      pauseVideo();
+    }
+  }
+
+  // Function to play the video
+  function playVideo() {
+    video.play();
+    playBtn.classList.add("hidden");
+  }
+
+  // Function to pause the video
+  function pauseVideo() {
+    video.pause();
+    playBtn.classList.remove("hidden");
+    playBtn.classList.add("flex");
+  }
+
+  // Function to toggle volume on/off
+  function toggleVolume() {
+    if (video.muted) {
+      video.muted = false;
+      volumeBtn.children[0].innerText = "volume_up";
+    } else {
+      video.muted = true;
+      volumeBtn.children[0].innerText = "volume_off";
+    }
+  }
+</script>

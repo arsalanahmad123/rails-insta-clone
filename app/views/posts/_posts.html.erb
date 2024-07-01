@@ -1,0 +1,27 @@
+<% ActiveStorage::Current.url_options = { host: request.base_url } %>
+<% posts.each do |post| %>
+  <div class="card card-compact bg-base-100 shadow-2xl flex flex-col w-72 h-fit z-50 mb-4" id="<%= "post-#{post.id}" %>">
+    <% if post.user == current_user %>
+      <div class="tooltip tooltip-top" data-tip="Delete">
+        <%= link_to "delete", delete_post_path(post),data: {turbo_method: :delete, turbo_frame: "posts-show",target: "_top"}, class: "material-icons text-red-400 hover:text-red-500 cursor-pointer p-3" %>
+      </div>
+    <% end %>
+    <figure class="w-full h-48 p-3">
+      <% if post.image.attached? %>
+        <%= image_tag(post.image, alt: "Image", class: "object-cover w-full h-full") %>
+      <% elsif post.video.attached? %>
+        <%= video_tag(post.video.url, class: "object-cover w-full h-full", data: { controller: "video" }) %>
+      <% else %>
+        Nothig Here Now 
+      <% end %>
+    </figure>
+    <div class="card-body">
+      <% if post.image.attached? %>
+        <p class="text-sm text-indigo-600">#image</p>
+      <% elsif post.video.attached? %>
+        <p class="text-sm text-violet-600">#video</p>
+      <% end %>
+      <p><%= post.caption %></p>
+    </div>
+  </div>
+<% end %>

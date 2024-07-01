@@ -1,0 +1,28 @@
+<%= form_for @user, url: user_path, data: { turbo: false } do |f| %>
+  <div class="mt-2 text-xs text-center">
+    <%= f.text_field :email_or_phone, class: "bg-[#FAFAFA] border border-gray-200 py-3 focus:outline-none focus:border-gray-500 rounded-sm placeholder:text-gray-500 pr-12 min-w-[250px] pl-1",placeholder: "Mobile Number or Email" %>
+  </div>
+  <div class="mt-2 text-xs text-center">
+    <%= f.text_field :name, class: "bg-[#FAFAFA] border border-gray-200 py-3 focus:outline-none focus:border-gray-500 rounded-sm placeholder:text-gray-500 pr-12 min-w-[250px] pl-1", placeholder: "Full Name" %>
+  </div>
+  <div class="mt-2 text-xs text-center">
+    <%= f.text_field :username, class: "bg-[#FAFAFA] border border-gray-200 py-3 focus:outline-none focus:border-gray-500 rounded-sm placeholder:text-gray-500 pr-12 min-w-[250px] pl-1", placeholder: "Username" %>
+  </div>
+  <div class="mt-2 text-xs text-center">
+    <%= f.password_field :password, class: "bg-[#FAFAFA] border border-gray-200 py-3 focus:outline-none focus:border-gray-500 rounded-sm placeholder:text-gray-500 pr-12 min-w-[250px] pl-1", placeholder: "Password" %>
+  </div>
+  <div class="text-xs max-w-[280px] mt-5 text-center text-gray-500">
+    People who use our service may have uploaded your contact information to Instagram.
+    <a href="https://www.facebook.com/help/instagram/261704639352628" class="text-blue-950 text-[12px]">Learn More</a>
+  </div>
+  <div class="text-xs max-w-[280px] mt-4 text-center text-gray-500">
+    By signing up, you agree to our 
+    <a href="https://help.instagram.com/581066165581870/?locale=en_US" class="text-blue-950 text-[12px]">Terms</a>
+    , <a href="https://l.instagram.com/?u=https%3A%2F%2Fwww.facebook.com%2Fprivacy%2Fpolicy&e=AT3kSBKWg4PJ0aYR14RCHyYCv86tiCNYYAcYkD9tuLAlIHqfffUdsWtc7jOzSuEci4cgONAK3OrOawO76tDDdJN5NOPsfRPserYslokgH8KfGtUFVoPLkVOMuYucEOuz5m49dRbA-Wz9RQ" class="text-blue-950 text-[12px]">Privacy Policy</a>
+    and 
+    <a href="https://www.instagram.com/legal/cookies/" class="text-blue-950 text-[12px]">Cookies</a>
+  </div>
+  <div class="mt-4 text-center mb-10">
+    <%= f.submit "Sign up",class: "bg-blue-400 text-white font-bold text-[15px] min-w-[250px] rounded-md py-1" %>
+  </div>
+<% end %>

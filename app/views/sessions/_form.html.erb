@@ -1,0 +1,11 @@
+<%= form_with(url:session_path,local: true, data: { turbo: false }) do |f| %>
+  <div class="mt-2 text-xs text-center">
+    <%= f.text_field :email, class: "bg-[#FAFAFA] border border-gray-200 py-3 focus:outline-none focus:border-gray-500 rounded-sm placeholder:text-gray-500 pr-12 min-w-[250px] pl-1", placeholder: "Username, or email", required: true %>
+  </div>
+  <div class="mt-2 text-xs text-center">
+    <%= f.password_field :password,class: "bg-[#FAFAFA] border border-gray-200 py-3 focus:outline-none focus:border-gray-500 rounded-sm placeholder:text-gray-500 pr-12 min-w-[250px] pl-1", placeholder: "Password", required: true %>
+  </div>
+  <div class="mt-4 text-center mb-10">
+    <%= f.submit "Log in", class: "bg-blue-400 text-white font-bold text-[15px] min-w-[250px] rounded-md py-1" %>
+  </div>
+<% end %>

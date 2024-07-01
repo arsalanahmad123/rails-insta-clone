@@ -1,0 +1,16 @@
+<div id="comments" class="flex flex-col gap-y-5 max-h-[400px] p-4 overflow-y-auto">
+  <% comments.each do |comment| %>
+    <article class="p-6 mb-6 text-base bg-white rounded-lg dark:bg-gray-900">
+      <footer class="flex justify-between items-center mb-2">
+        <div class="flex items-center">
+          <p class="inline-flex items-center mr-3 justify-between text-sm text-indigo-600 dark:text-white">
+            <span class="material-icons">account_circle</span>
+            <%= comment.user.username %>
+          </p>
+          <p class="text-sm text-gray-600 dark:text-gray-400"><%= comment.created_at_formatted %></p>
+        </div>
+      </footer>
+      <p class="text-gray-500 dark:text-gray-400"><%= comment.body %></p>
+    </article>
+  <% end %>
+</div>

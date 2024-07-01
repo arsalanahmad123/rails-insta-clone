@@ -1,0 +1,43 @@
+<% if flash[:success] %>
+  <div class="bg-green-100  text-green-700 px-4 py-3 rounded w-fit fixed bottom-5 right-5 shadow-md shadow-green-200  cursor-pointer animate-jump-in animate-once animate-duration-500 animate-delay-100" role="alert" data-controller="flash">
+    <div class="text-xs flex justify-end">Click to hide notification</div>
+    <div class="flex items-center gap-x-2 mt-2">
+      <span class="material-icons">
+        check_circle
+      </span>
+      <strong class="font-bold">Success!</strong>
+    </div>
+    <span class="text-right">
+      <%= flash[:success] %>
+    </span>
+  </div>
+<% end %>
+<% if flash[:notice] %>
+  <div class="bg-gray-300 text-gray-950 px-4 py-3 rounded w-fit fixed
+ bottom-5 right-5 shadow-md shadow-gray-400 cursor-pointer animate-jump-in animate-once animate-duration-500 animate-delay-100" role="alert" data-controller="flash">
+    <div class="text-xs flex justify-end">Click to hide notification</div>
+    <div class="flex items-center gap-x-2 mt-2">
+      <span class="material-icons">
+        priority_high
+      </span>
+      <strong class="font-bold">Notice</strong>
+    </div>
+    <span class="text-right">
+      <%= flash[:notice] %>
+    </span>
+  </div>
+<% end %>
+<% if flash[:alert] %>
+  <div class="bg-red-100 text-red-700 px-4 py-3 rounded w-fit fixed bottom-5 right-5 shadow-md shadow-red-200 cursor-pointer animate-jump-in animate-once animate-duration-500 animate-delay-100" role="alert" data-controller="flash">
+    <div class="text-xs flex justify-end">Click to hide notification</div>
+    <div class="flex items-center gap-x-2 mt-2">
+      <span class="material-icons">
+        error
+      </span>
+      <strong class="font-bold">Alert!</strong>
+    </div>
+    <span class="text-right">
+      <%= flash[:alert] %>
+    </span>
+  </div>
+<% end %>

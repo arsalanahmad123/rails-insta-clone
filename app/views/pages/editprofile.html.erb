@@ -1,0 +1,14 @@
+<%= turbo_frame_tag "main-body" do %>
+  <div class="p-1 mt-3 border border-slate-300 mx-auto w-10/12 overflow-y-auto">
+    <div class="grid grid-cols-5">
+      <div class="col-span-1 border-r border-slate-300">
+        <%= render 'edit_sidebar' %>
+      </div>
+      <div class="col-span-4">
+        <%= turbo_frame_tag "edit-contentarea",data: {turbo_action: "advance"} do %>
+          <%= render 'edit_section' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

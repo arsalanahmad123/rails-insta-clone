@@ -1,0 +1,7 @@
+<div class="flex">
+  <!-- Sidebar -->
+  <%= render 'sidebar' %>
+  <%= turbo_frame_tag "main-body",data: {turbo_action: "advance"},class: "md:ml-[250px] w-full p-4" do %>
+    <%= render 'suggestions' %>
+  <% end %>
+</div>

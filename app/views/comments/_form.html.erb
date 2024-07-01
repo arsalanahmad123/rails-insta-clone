@@ -1,0 +1,11 @@
+<%= form_with(model: [reel,comment],url: create_comment_path) do |f| %>
+  <div class="flex flex-col gap-y-3">
+    <%= f.text_area :body,class: "w-full h-10 rounded border border-gray-300 focus:outline-none 
+    focus:border-indigo-500 text-base px-4 py-2",required: true %>
+    <div>
+      <%= f.submit "Post",class: "bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded" %>
+      <%# cancel button  %>
+      <%= link_to "Cancel",reels_path,class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" %>
+    </div>
+  </div>
+<% end %>
